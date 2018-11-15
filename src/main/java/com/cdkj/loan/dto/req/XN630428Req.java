@@ -1,14 +1,9 @@
 package com.cdkj.loan.dto.req;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 public class XN630428Req {
 
     // 车系标识
     private String seriesId;
-
-    @NotBlank
-    private String updater;
 
     private String cdkjToken;
 
@@ -28,11 +23,4 @@ public class XN630428Req {
         this.seriesId = seriesId;
     }
 
-    public String getUpdater() {
-        return updater;
-    }
-
-    public void setUpdater(String updater) {
-        this.updater = updater;
-    }
 }

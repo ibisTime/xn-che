@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -20,12 +19,10 @@ import com.cdkj.loan.aliyun.util.HttpUtils;
 import com.cdkj.loan.ao.IBrandAO;
 import com.cdkj.loan.bo.IBrandBO;
 import com.cdkj.loan.bo.ISYSConfigBO;
-import com.cdkj.loan.bo.ISYSUserBO;
 import com.cdkj.loan.bo.base.Paginable;
 import com.cdkj.loan.core.OkHttpUtils;
 import com.cdkj.loan.domain.Brand;
 import com.cdkj.loan.domain.SYSConfig;
-import com.cdkj.loan.domain.SYSUser;
 import com.cdkj.loan.dto.req.XN630400Req;
 import com.cdkj.loan.dto.req.XN630402Req;
 import com.cdkj.loan.dto.req.XN630408Req;
@@ -41,9 +38,6 @@ public class BrandAOImpl implements IBrandAO {
     private IBrandBO brandBO;
 
     @Autowired
-    private ISYSUserBO sysUserBO;
-
-    @Autowired
     private ISYSConfigBO sysConfigBO;
 
     @Override
@@ -57,7 +51,6 @@ public class BrandAOImpl implements IBrandAO {
         brand.setDescription(req.getDescription());
 
         brand.setStatus(EBrandStatus.TO_UP.getCode());
-        brand.setUpdater(req.getUpdater());
         brand.setUpdateDatetime(new Date());
         brand.setRemark(req.getRemark());
         brandBO.saveBrand(brand);
@@ -128,7 +121,6 @@ public class BrandAOImpl implements IBrandAO {
         brand.setLogo(req.getLogo());
         brand.setName(req.getName());
         brand.setDescription(req.getDescription());
-        brand.setUpdater(req.getUpdater());
         brand.setUpdateDatetime(new Date());
         brand.setRemark(req.getRemark());
         brandBO.editBrand(brand);
@@ -142,7 +134,6 @@ public class BrandAOImpl implements IBrandAO {
             throw new BizException("xn0000", "品牌已上架,请勿重复上架");
         }
         brand.setStatus(EBrandStatus.UP.getCode());
-        brand.setUpdater(updater);
         brand.setUpdateDatetime(new Date());
         brand.setRemark(remark);
         brandBO.editBrand(brand);
@@ -156,7 +147,6 @@ public class BrandAOImpl implements IBrandAO {
             throw new BizException("xn0000", "品牌未上架");
         }
         brand.setStatus(EBrandStatus.DOWN.getCode());
-        brand.setUpdater(updater);
         brand.setUpdateDatetime(new Date());
         brand.setRemark(remark);
         brandBO.editBrand(brand);
@@ -167,32 +157,18 @@ public class BrandAOImpl implements IBrandAO {
             Brand condition) {
         Paginable<Brand> paginable = brandBO.getPaginable(start, limit,
             condition);
-        for (Brand brand : paginable.getList()) {
-            initBrand(brand);
-        }
         return paginable;
-    }
-
-    private void initBrand(Brand brand) {
-        if (StringUtils.isNotBlank(brand.getUpdater())) {
-            SYSUser user = sysUserBO.getUser(brand.getUpdater());
-            brand.setUpdaterName(user.getRealName());
-        }
     }
 
     @Override
     public Brand getBrand(String code) {
         Brand brand = brandBO.getBrand(code);
-        initBrand(brand);
         return brand;
     }
 
     @Override
     public List<Brand> queryBrandList(Brand condition) {
         List<Brand> queryBrand = brandBO.queryBrand(condition);
-        for (Brand brand : queryBrand) {
-            initBrand(brand);
-        }
         return queryBrand;
     }
 
@@ -200,9 +176,9 @@ public class BrandAOImpl implements IBrandAO {
     @Transactional
     public void refreshBrand(XN630408Req req) {
         SYSConfig url = sysConfigBO.getSYSConfig("car_refresh", "url");
-        SYSConfig token = sysConfigBO.getSYSConfig("car_refresh", "token");
-        String json = OkHttpUtils.doAccessHTTPGetJson(url.getCvalue()
-                + "/getCarBrandList" + "?token=" + token.getCvalue());
+        String json = OkHttpUtils
+            .doAccessHTTPGetJson(url.getCvalue() + "/getCarBrandList"
+                    + "?token=" + "ed34a9f390e806112420863423cd8dbc");
         if (json == null) {
             throw new BizException(EBizErrorCode.DEFAULT.getCode(),
                 "查询结果为空，请检查地址和token是否正确！");
@@ -232,7 +208,6 @@ public class BrandAOImpl implements IBrandAO {
             brand.setName(brandName);
             brand.setLetter(initial);
             brand.setStatus(EBrandStatus.UP.getCode());
-            brand.setUpdater(req.getUpdater());
             brand.setUpdateDatetime(updateTime);
             brandBO.saveBrand(brand);
         }

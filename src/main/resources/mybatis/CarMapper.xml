@@ -29,7 +29,6 @@
 		<result column="pic" property="pic" />
 		<result column="description" property="description" />
 		<result column="status" property="status" />
-		<result column="updater" property="updater" />
 		<result column="update_datetime" property="updateDatetime" />
 		<result column="remark" property="remark" />
 	</resultMap>
@@ -78,29 +77,8 @@
 			<if test="orderNo != null and orderNo != '' ">
 				AND t.order_no = #{orderNo}
 			</if>
-			<if test="slogan != null and slogan != '' ">
-				AND t.slogan = #{slogan}
-			</if>
-			<if test="advPic != null and advPic != '' ">
-				AND t.adv_pic = #{advPic}
-			</if>
-			<if test="pic != null and pic != '' ">
-				AND t.pic = #{pic}
-			</if>
-			<if test="description != null and description != '' ">
-				AND t.description = #{description}
-			</if>
 			<if test="status != null and status != '' ">
 				AND t.status = #{status}
-			</if>
-			<if test="updater != null and updater != '' ">
-				AND t.updater = #{updater}
-			</if>
-			<if test="updateDatetime != null and updateDatetime != '' ">
-				AND t.update_datetime = #{updateDatetime}
-			</if>
-			<if test="remark != null and remark != '' ">
-				AND t.remark = #{remark}
 			</if>
 		</trim>
 	</sql>
@@ -133,7 +111,6 @@
 		,pic
 		,description
 		,status
-		,updater
 		,update_datetime
 		,remark
 		FROM
@@ -179,7 +156,6 @@
 		,pic
 		,description
 		,status
-		,updater
 		,update_datetime
 		,remark
 		)
@@ -210,7 +186,6 @@
 		,#{pic}
 		,#{description}
 		,#{status}
-		,#{updater}
 		,#{updateDatetime}
 		,#{remark}
 		)
@@ -233,7 +208,6 @@
 		,pic = #{pic}          
 		,description = #{description}
 		,status = #{status}
-		,updater = #{updater}
 		,update_datetime = #{updateDatetime}
 		,remark = #{remark}
 		WHERE code = #{code}
@@ -244,7 +218,6 @@
 		location = #{location}
 		,order_no = #{orderNo}
 		,status = #{status}
-		,updater = #{updater}
 		,update_datetime = #{updateDatetime}
 		,remark = #{remark}
 		WHERE code = #{code}
@@ -253,7 +226,6 @@
 	<update id="update_car_down" parameterType="car">
 		UPDATE tht_car SET
 		status = #{status}
-		,updater = #{updater}
 		,update_datetime = #{updateDatetime}
 		,remark = #{remark}
 		WHERE code = #{code}

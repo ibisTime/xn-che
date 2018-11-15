@@ -20,7 +20,6 @@
 		<result column="discharge_standard" property="dischargeStandard" />
 		<result column="title" property="title" />
 		<result column="car_logo_url" property="carLogoUrl" />
-		<result column="updater" property="updater" />
 		<result column="update_datetime" property="updateDatetime" />
 	</resultMap>
 	<sql id="where_condition">
@@ -49,7 +48,6 @@
 		,t.discharge_standard
 		,t.title
 		,t.car_logo_url
-		,t.updater
 		,t.update_datetime
 		FROM
 		tdh_basic_valuation t
@@ -87,7 +85,6 @@
 		,discharge_standard
 		,title
 		,car_logo_url
-		,updater
 		,update_datetime
 		)
 		VALUES(
@@ -108,7 +105,6 @@
 		,#{dischargeStandard}
 		,#{title}
 		,#{carLogoUrl}
-		,#{updater}
 		,#{updateDatetime}
 		)
 	</insert>
@@ -128,7 +124,6 @@
 		,discharge_standard = #{dischargeStandard}
 		,title = #{title}
 		,car_logo_url = #{carLogoUrl}
-		,updater = #{updater}
 		,update_datetime = #{updateDatetime}
 		WHERE id = #{id}
 	</update>

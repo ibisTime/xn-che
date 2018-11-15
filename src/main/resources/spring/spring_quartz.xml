@@ -15,35 +15,5 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
-       <property name="triggers">  
-           <list>
-           	  <ref bean="doPayedDailyTrigger"/>
-           	  <ref bean="doBizDayStatisticTrigger"/>
- 		   </list>  
-       </property>  
-       <property name="autoStartup" value="true"/>  
-    </bean> 
-		
-	<bean id="doPayedDailyTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
-       <property name="jobDetail" ref="doPayedDaily"/>  
-       <property name="cronExpression" value="0 0 23 L * ?"/><!-- 每月最后一天23点执行一次：0 0 23 L * ? -->
-	</bean>
-	
-	<bean id="doBizDayStatisticTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
-       <property name="jobDetail" ref="doBizDayStatistic"/>  
-       <property name="cronExpression" value="0 0 00 * * ?"/><!-- 0 0 00 * * ?  每一天0点执行 -->
-	</bean>
-	
-	<bean id="doPayedDaily" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
-	        <property name="targetObject" ref="repayPlanAOImpl"/>  
-	        <property name="targetMethod" value="doPayedDaily"/>  
-	        <property name="concurrent" value="true"/>  <!--  是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程-->  
-	</bean>
-	
-	<bean id="doBizDayStatistic" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
-	        <property name="targetObject" ref="bizDayStatisticAOImpl"/>  
-	        <property name="targetMethod" value="doBizDayStatistic"/>  
-	        <property name="concurrent" value="true"/>  <!--  是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程-->  
-	</bean>
+    
 </beans>
