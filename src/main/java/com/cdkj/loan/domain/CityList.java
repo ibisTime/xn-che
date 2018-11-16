@@ -29,9 +29,6 @@ public class CityList extends ABaseDO {
     // 所属省份名称
     private String provName;
 
-    // 更新人
-    private String updater;
-
     // 更新时间
     private Date createDatetime;
 
@@ -73,14 +70,6 @@ public class CityList extends ABaseDO {
 
     public String getProvName() {
         return provName;
-    }
-
-    public void setUpdater(String updater) {
-        this.updater = updater;
-    }
-
-    public String getUpdater() {
-        return updater;
     }
 
     public Date getCreateDatetime() {
