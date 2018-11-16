@@ -16,4 +16,6 @@ public interface ICarBO extends IPaginableBO<Car> {
     public List<Car> queryCar(Car condition);
 
     public void removeCar(Car car);
+
+    public Car getCarByModelId(String modelId);
 }

@@ -69,4 +69,11 @@ public class CarBOImpl extends PaginableBOImpl<Car> implements ICarBO {
         carDAO.delete(car);
     }
 
+    @Override
+    public Car getCarByModelId(String modelId) {
+        Car car = new Car();
+        car.setModelId(modelId);
+        return carDAO.select(car);
+    }
+
 }

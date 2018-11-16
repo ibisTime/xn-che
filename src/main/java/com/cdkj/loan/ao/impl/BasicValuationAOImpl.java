@@ -10,10 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSONObject;
 import com.cdkj.loan.ao.IBasicValuationAO;
 import com.cdkj.loan.bo.IBasicValuationBO;
+import com.cdkj.loan.bo.ICarBO;
 import com.cdkj.loan.bo.ISYSConfigBO;
 import com.cdkj.loan.bo.base.Paginable;
 import com.cdkj.loan.core.OkHttpUtils;
 import com.cdkj.loan.domain.BasicValuation;
+import com.cdkj.loan.domain.Car;
 import com.cdkj.loan.domain.SYSConfig;
 import com.cdkj.loan.dto.req.XN630450Req;
 import com.cdkj.loan.enums.EBizErrorCode;
@@ -27,6 +29,9 @@ public class BasicValuationAOImpl implements IBasicValuationAO {
 
     @Autowired
     private ISYSConfigBO sysConfigBO;
+
+    @Autowired
+    private ICarBO carBO;
 
     @Override
     public void addBasicValuation(BasicValuation data) {
@@ -59,7 +64,9 @@ public class BasicValuationAOImpl implements IBasicValuationAO {
                     + "ed34a9f390e806112420863423cd8dbc" + "&modelId="
                     + req.getModelId() + "&regDate=" + req.getRegDate()
                     + "&mile=" + req.getMile() + "&zone=" + req.getZone());
+        Car car = carBO.getCarByModelId(req.getModelId());
         JSONObject jsono = JSONObject.parseObject(json);
+        jsono.put("model_name", car.getName());
         String status = jsono.get("status").toString();
         if (status.equals("0")) {
             throw new BizException(EBizErrorCode.DEFAULT.getCode(),
@@ -99,4 +106,5 @@ public class BasicValuationAOImpl implements IBasicValuationAO {
         basicValuationBO.saveBasicValuation(basicValuation);
         return jsono;
     }
+
 }
