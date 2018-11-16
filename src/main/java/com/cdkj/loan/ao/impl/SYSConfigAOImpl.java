@@ -23,10 +23,9 @@ public class SYSConfigAOImpl implements ISYSConfigAO {
     ISYSConfigBO sysConfigBO;
 
     @Override
-    public void editSYSConfig(Long id, String cvalue, String updater) {
+    public void editSYSConfig(Long id, String cvalue) {
         SYSConfig sysConfig = sysConfigBO.getSYSConfig(id);
         sysConfig.setCvalue(cvalue);
-        sysConfig.setUpdater(updater);
         sysConfig.setUpdateDatetime(new Date());
         sysConfigBO.refreshSYSConfig(sysConfig);
     }
@@ -53,11 +52,10 @@ public class SYSConfigAOImpl implements ISYSConfigAO {
     }
 
     @Override
-    public void editGpsLimitNumber(String number, String updater) {
+    public void editGpsLimitNumber(String number) {
         SYSConfig data = sysConfigBO
             .getSYSConfig(SysConstants.PERSONAL_APPLICATION_LIMIT);
         data.setCvalue(number);
-        data.setUpdater(updater);
         data.setUpdateDatetime(new Date());
         sysConfigBO.refreshSYSConfig(data);
     }

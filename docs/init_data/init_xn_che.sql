@@ -1,0 +1,1 @@
+INSERT INTO `tsys_config` (`type`, `ckey`, `cvalue`, `update_datetime`, `remark`, `company_code`, `system_code`) VALUES ('car_refresh', 'url', 'http://api.che300.com/service', '2018-08-15 17:33:30', '车辆刷新url', 'CD-CWZCD000020', 'CD-CWZCD000020');

@@ -15,7 +15,7 @@ public interface ISYSConfigAO {
 
     String DEFAULT_ORDER_COLUMN = "id";
 
-    public void editSYSConfig(Long id, String cvalue, String updater);
+    public void editSYSConfig(Long id, String cvalue);
 
     public Paginable<SYSConfig> querySYSConfigPage(int start, int limit,
             SYSConfig condition);
@@ -27,5 +27,5 @@ public interface ISYSConfigAO {
     public SYSConfig getSYSConfig(String key);
 
     // 修改GPS个人申领上限个数
-    public void editGpsLimitNumber(String number, String updater);
+    public void editGpsLimitNumber(String number);
 }

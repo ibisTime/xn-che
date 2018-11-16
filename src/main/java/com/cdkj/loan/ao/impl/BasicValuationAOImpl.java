@@ -95,7 +95,6 @@ public class BasicValuationAOImpl implements IBasicValuationAO {
         basicValuation.setDischargeStandard(dischargeStandard);
         basicValuation.setTitle(title);
         basicValuation.setCarLogoUrl(carLogoUrl);
-        basicValuation.setUpdater(req.getUpdater());
         basicValuation.setUpdateDatetime(new Date());
         basicValuationBO.saveBasicValuation(basicValuation);
         return jsono;

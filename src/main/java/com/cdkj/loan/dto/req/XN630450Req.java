@@ -18,16 +18,6 @@ public class XN630450Req {
     @NotBlank
     private String zone;// 城市标识
 
-    private String updater;// 操作人
-
-    public String getUpdater() {
-        return updater;
-    }
-
-    public void setUpdater(String updater) {
-        this.updater = updater;
-    }
-
     public String getCdkjToken() {
         return cdkjToken;
     }

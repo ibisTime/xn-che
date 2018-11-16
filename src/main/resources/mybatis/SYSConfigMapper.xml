@@ -8,7 +8,6 @@
 		<result column="ckey" property="ckey" />
 		<result column="cvalue" property="cvalue" />
 		
-		<result column="updater" property="updater" />
 		<result column="update_datetime" property="updateDatetime" />
 		<result column="remark" property="remark" />
 	</resultMap>
@@ -26,9 +25,6 @@
 			<if test="ckeyForQuery != null and ckeyForQuery != '' ">
 				AND t.ckey like "%"#{ckeyForQuery}"%"
 			</if>
-			<if test="updater != null and updater != '' ">
-				AND t.updater = #{updater}
-			</if>	
 		</trim>
 	</sql>
 	<select id="select_sysConfig" parameterType="sysConfig" resultMap="sysConfig_DB_Result">
@@ -38,7 +34,6 @@
 		,ckey
 		,cvalue
 		
-		,updater
 		,update_datetime
 		,remark
 		FROM
@@ -62,7 +57,6 @@
 		,ckey
 		,cvalue
 		
-		,updater
 		,update_datetime
 		,remark
 		)
@@ -71,7 +65,6 @@
 		,#{ckey}
 		,#{cvalue}
 		
-		,#{updater}
 		,#{updateDatetime}
 		,#{remark}
 		)
@@ -80,7 +73,6 @@
 	<update id="update_value" parameterType="sysConfig">
 		UPDATE tsys_config SET
 		cvalue = #{cvalue}
-		,updater=#{updater}
 		,update_datetime=#{updateDatetime}
 		,remark=#{remark}
 		WHERE id = #{id}

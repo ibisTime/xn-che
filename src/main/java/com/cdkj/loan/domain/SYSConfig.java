@@ -35,9 +35,6 @@ public class SYSConfig extends ABaseDO {
     // value值
     private String cvalue;
 
-    // 更新人
-    private String updater;
-
     // 更新时间
     private Date updateDatetime;
 
@@ -77,14 +74,6 @@ public class SYSConfig extends ABaseDO {
 
     public void setCvalue(String cvalue) {
         this.cvalue = cvalue;
-    }
-
-    public String getUpdater() {
-        return updater;
-    }
-
-    public void setUpdater(String updater) {
-        this.updater = updater;
     }
 
     public Date getUpdateDatetime() {
