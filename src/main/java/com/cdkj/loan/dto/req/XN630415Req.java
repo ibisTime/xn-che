@@ -7,6 +7,17 @@ public class XN630415Req extends APageReq {
     private String brandCode; // 品牌编号（选填）
 
     private String status; // 状态（选填）
+    // 类型（1接口导入2用户新增）
+
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getName() {
         return name;

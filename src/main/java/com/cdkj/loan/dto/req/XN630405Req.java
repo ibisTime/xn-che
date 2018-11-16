@@ -16,12 +16,23 @@ public class XN630405Req extends APageReq {
     // 状态（选填）
     private String status;
 
+    // 类型（1接口导入2用户新增）
+    private String type;
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getLetter() {
