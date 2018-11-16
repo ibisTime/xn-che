@@ -142,7 +142,9 @@ public class CarAOImpl implements ICarAO {
             series.setType(ECarProduceType.IMPORT.getCode());
             List<Series> querySeries = seriesBO.querySeries(series);
             for (Series domain : querySeries) {
-                refresh(url, domain.getSeriesId());
+                refresh(url, domain.getSeriesId(), domain.getCode(),
+                    domain.getName(), domain.getBrandCode(),
+                    domain.getBrandName());
             }
         } else {
             Series series = seriesBO.getSeriesBySeriesId(req.getSeriesId());
@@ -150,11 +152,13 @@ public class CarAOImpl implements ICarAO {
                 throw new BizException(EBizErrorCode.DEFAULT.getCode(),
                     "车系标识不存在！");
             }
-            refresh(url, req.getSeriesId());
+            refresh(url, req.getSeriesId(), series.getCode(), series.getName(),
+                series.getBrandCode(), series.getBrandName());
         }
     }
 
-    private void refresh(SYSConfig url, String seriesId) {
+    private void refresh(SYSConfig url, String seriesId, String seriesCode,
+            String seriesName, String brandCode, String brandName) {
         String json = OkHttpUtils.doAccessHTTPGetJson(url.getCvalue()
                 + "/getCarModelList" + "?token="
                 + "ed34a9f390e806112420863423cd8dbc" + "&seriesId=" + seriesId);
@@ -196,6 +200,10 @@ public class CarAOImpl implements ICarAO {
             car.setModelId(modelId);
             car.setType(ECarProduceType.IMPORT.getCode());
             car.setName(modelName);
+            car.setSeriesCode(seriesCode);
+            car.setSeriesName(seriesName);
+            car.setBrandCode(brandCode);
+            car.setBrandName(brandName);
             car.setSalePrice(modelPrice + "万");
             car.setModelYear(modelYear);
             car.setMinRegYear(minRegYear);

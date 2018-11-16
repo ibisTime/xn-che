@@ -1,5 +1,6 @@
 package com.cdkj.loan.ao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,7 @@ public class CityListAOImpl implements ICityListAO {
             cityList.setCityName(cityName);
             cityList.setProvId(provId);
             cityList.setProvName(provName);
+            cityList.setCreateDatetime(new Date());
             cityListBO.saveCityList(cityList);
         }
     }

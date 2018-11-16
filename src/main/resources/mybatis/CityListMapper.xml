@@ -8,7 +8,7 @@
 		<result column="city_name" property="cityName" />
 		<result column="prov_id" property="provId" />
 		<result column="prov_name" property="provName" />
-		<result column="update_datetime" property="updateDatetime" />
+		<result column="create_datetime" property="createDatetime" />
 	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -24,7 +24,7 @@
 		,t.city_name
 		,t.prov_id
 		,t.prov_name
-		,t.update_datetime
+		,t.create_datetime
 		FROM
 		tdh_city_list t
 		<include refid="where_condition" />
@@ -49,7 +49,7 @@
 		,city_name
 		,prov_id
 		,prov_name
-		,update_datetime
+		,create_datetime
 		)
 		VALUES(
 		#{id}
@@ -57,7 +57,7 @@
 		,#{cityName}
 		,#{provId}
 		,#{provName}
-		,#{updateDatetime}
+		,#{createDatetime}
 		)
 	</insert>
 
@@ -68,7 +68,7 @@
 		,city_name = #{cityName}
 		,prov_id = #{provId}
 		,prov_name = #{provName}
-		,update_datetime = #{updateDatetime}
+		,create_datetime = #{createDatetime}
 		WHERE id = #{id}
 	</update>
 

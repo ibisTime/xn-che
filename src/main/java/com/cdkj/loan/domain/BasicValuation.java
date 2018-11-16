@@ -69,7 +69,7 @@ public class BasicValuation extends ABaseDO {
     private String updater;
 
     // 更新时间
-    private Date updateDatetime;
+    private Date createDatetime;
 
     public int getId() {
         return id;
@@ -215,12 +215,12 @@ public class BasicValuation extends ABaseDO {
         return updater;
     }
 
-    public Date getUpdateDatetime() {
-        return updateDatetime;
+    public Date getCreateDatetime() {
+        return createDatetime;
     }
 
-    public void setUpdateDatetime(Date updateDatetime) {
-        this.updateDatetime = updateDatetime;
+    public void setCreateDatetime(Date createDatetime) {
+        this.createDatetime = createDatetime;
     }
 
 }

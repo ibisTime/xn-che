@@ -23,6 +23,8 @@ public class Series extends ABaseDO {
 
     private String brandCode; // 品牌编号
 
+    private String brandName; // 品牌名称
+
     private String name; // 名称
 
     private String seriesGroupName; // 系列组名
@@ -88,6 +90,14 @@ public class Series extends ABaseDO {
 
     public void setBrandCode(String brandCode) {
         this.brandCode = brandCode;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public String getName() {

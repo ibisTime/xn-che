@@ -20,7 +20,7 @@
 		<result column="discharge_standard" property="dischargeStandard" />
 		<result column="title" property="title" />
 		<result column="car_logo_url" property="carLogoUrl" />
-		<result column="update_datetime" property="updateDatetime" />
+		<result column="create_datetime" property="createDatetime" />
 	</resultMap>
 	<sql id="where_condition">
 		<trim prefix="WHERE" prefixOverrides="AND | OR">
@@ -48,7 +48,7 @@
 		,t.discharge_standard
 		,t.title
 		,t.car_logo_url
-		,t.update_datetime
+		,t.create_datetime
 		FROM
 		tdh_basic_valuation t
 		<include refid="where_condition" />
@@ -85,7 +85,7 @@
 		,discharge_standard
 		,title
 		,car_logo_url
-		,update_datetime
+		,create_datetime
 		)
 		VALUES(
 		#{id}
@@ -105,7 +105,7 @@
 		,#{dischargeStandard}
 		,#{title}
 		,#{carLogoUrl}
-		,#{updateDatetime}
+		,#{createDatetime}
 		)
 	</insert>
 
@@ -124,7 +124,7 @@
 		,discharge_standard = #{dischargeStandard}
 		,title = #{title}
 		,car_logo_url = #{carLogoUrl}
-		,update_datetime = #{updateDatetime}
+		,create_datetime = #{createDatetime}
 		WHERE id = #{id}
 	</update>
 

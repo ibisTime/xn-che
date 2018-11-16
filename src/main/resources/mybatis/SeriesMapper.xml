@@ -9,6 +9,7 @@
 		<result column="type" property="type" />
 		<result column="maker_type" property="makerType" />
 		<result column="brand_code" property="brandCode" />
+		<result column="brand_name" property="brandName" />
 		<result column="name" property="name" />
 		<result column="series_group_name" property="seriesGroupName" />
 		<result column="slogan" property="slogan" />
@@ -61,6 +62,7 @@
 		,type
 		,maker_type
 		,brand_code
+		,brand_name
 		,name
 		,series_group_name
 		,slogan
@@ -94,6 +96,7 @@
 		,type
 		,maker_type
 		,brand_code
+		,brand_name
 		,name
 		,series_group_name
 		,slogan
@@ -112,6 +115,7 @@
 		,#{type}
 		,#{makerType}
 		,#{brandCode}
+		,#{brandName}
 		,#{name}
 		,#{seriesGroupName}
 		,#{slogan}

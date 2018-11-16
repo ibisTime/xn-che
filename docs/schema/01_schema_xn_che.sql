@@ -21,7 +21,7 @@ CREATE TABLE `tdh_basic_valuation` (
   `discharge_standard` varchar(32) DEFAULT NULL COMMENT '排放标准',
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `car_logo_url` varchar(255) DEFAULT NULL COMMENT '汽车标志网址',
-  `update_datetime` datetime DEFAULT NULL COMMENT '更新时间',
+  `create_datetime` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='基础估值';
 
@@ -36,7 +36,7 @@ CREATE TABLE `tdh_city_list` (
   `city_name` varchar(32) DEFAULT NULL COMMENT '城市名称',
   `prov_id` int(11) DEFAULT NULL COMMENT '所属省份ID',
   `prov_name` varchar(32) DEFAULT NULL COMMENT '所属省份名称',
-  `update_datetime` datetime DEFAULT NULL COMMENT '更新时间',
+  `create_datetime` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='城市列表';
 
@@ -107,6 +107,7 @@ CREATE TABLE `tht_series` (
   `type` varchar(4) DEFAULT NULL COMMENT '车系类型（1接口导入,2用户新增）',
   `maker_type` varchar(255) DEFAULT NULL COMMENT '制造商类型',
   `brand_code` varchar(32) DEFAULT NULL COMMENT '品牌编号',
+  `brand_name` varchar(255) DEFAULT NULL COMMENT '品牌名称',
   `name` varchar(255) DEFAULT NULL COMMENT '名称',
   `series_group_name` varchar(255) DEFAULT NULL COMMENT '系列组名',
   `slogan` text COMMENT '广告语',
