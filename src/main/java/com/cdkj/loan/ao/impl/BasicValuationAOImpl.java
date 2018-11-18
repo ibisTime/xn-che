@@ -64,6 +64,10 @@ public class BasicValuationAOImpl implements IBasicValuationAO {
                     + "ed34a9f390e806112420863423cd8dbc" + "&modelId="
                     + req.getModelId() + "&regDate=" + req.getRegDate()
                     + "&mile=" + req.getMile() + "&zone=" + req.getZone());
+        if (json == null) {
+            throw new BizException(EBizErrorCode.DEFAULT.getCode(),
+                "查询数据为空，请查看参数是否正确！");
+        }
         Car car = carBO.getCarByModelId(req.getModelId());
         JSONObject jsono = JSONObject.parseObject(json);
         jsono.put("model_name", car.getName());
