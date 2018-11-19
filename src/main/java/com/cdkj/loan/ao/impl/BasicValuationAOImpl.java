@@ -11,11 +11,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.cdkj.loan.ao.IBasicValuationAO;
 import com.cdkj.loan.bo.IBasicValuationBO;
 import com.cdkj.loan.bo.ICarBO;
+import com.cdkj.loan.bo.ICityListBO;
 import com.cdkj.loan.bo.ISYSConfigBO;
 import com.cdkj.loan.bo.base.Paginable;
 import com.cdkj.loan.core.OkHttpUtils;
+import com.cdkj.loan.core.StringValidater;
 import com.cdkj.loan.domain.BasicValuation;
 import com.cdkj.loan.domain.Car;
+import com.cdkj.loan.domain.CityList;
 import com.cdkj.loan.domain.SYSConfig;
 import com.cdkj.loan.dto.req.XN630450Req;
 import com.cdkj.loan.enums.EBizErrorCode;
@@ -32,6 +35,9 @@ public class BasicValuationAOImpl implements IBasicValuationAO {
 
     @Autowired
     private ICarBO carBO;
+
+    @Autowired
+    private ICityListBO cityListBO;
 
     @Override
     public void addBasicValuation(BasicValuation data) {
@@ -59,11 +65,16 @@ public class BasicValuationAOImpl implements IBasicValuationAO {
     @Transactional
     public Object basicValuation(XN630450Req req) {
         SYSConfig url = sysConfigBO.getSYSConfig("car_refresh", "url");
-        String json = OkHttpUtils.doAccessHTTPGetJson(
-            url.getCvalue() + "/getUsedCarPrice" + "?token="
-                    + "ed34a9f390e806112420863423cd8dbc" + "&modelId="
-                    + req.getModelId() + "&regDate=" + req.getRegDate()
-                    + "&mile=" + req.getMile() + "&zone=" + req.getZone());
+        CityList cityList = cityListBO
+            .getCityList(StringValidater.toInteger(req.getZone()));
+        if (cityList == null) {
+            throw new BizException(EBizErrorCode.DEFAULT.getCode(), "城市标识不存在！");
+        }
+        String json = OkHttpUtils.doAccessHTTPGetJson(url.getCvalue()
+                + "/getUsedCarPrice" + "?token="
+                + "ed34a9f390e806112420863423cd8dbc" + "&modelId="
+                + req.getModelId() + "&regDate=" + req.getRegDate() + "&mile="
+                + req.getMile() + "&zone=" + cityList.getCityId());
         if (json == null) {
             throw new BizException(EBizErrorCode.DEFAULT.getCode(),
                 "查询数据为空，请查看参数是否正确！");
