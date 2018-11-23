@@ -15,7 +15,7 @@ public class DateUtil {
 
     public static final String DATA_TIME_PATTERN_2 = "yyyy-MM-dd HH:mm";
 
-    public static final String DATA_TIME_PATTERN_3 = "yyyyMMDDhhmmss";
+    public static final String DATA_TIME_PATTERN_3 = "yyyyMMddhhmmss";
 
     public static final String DATA_TIME_PATTERN_4 = "yyyyMMDDhhmmss";
 
